@@ -1,0 +1,83 @@
+<template name="session">
+  <div id="wrap">
+    {{> header}}
+    <div class="page session container-fluid">
+      <div class="row-fluid">
+        <div class="offset2 span8">
+          {{#constant}}
+            <div id="toolbox" class="addthis_floating_style addthis_16x16_style">
+              <a class="addthis_button_facebook"></a>
+              <a class="addthis_button_twitter"></a>
+              <a class="addthis_button_linkedin"></a>
+              <a class="addthis_button_email"></a>
+            </div>
+          {{/constant}}
+
+          <h2>{{session.name}}</h2>
+
+          <div>{{#getTime session.date.start}}{{/getTime}}-{{#getTime session.date.end}}{{/getTime}}</div>
+
+          <div id="location">
+            {{{session.location}}}
+          </div>
+
+          <input value="{{session._id}}" type="hidden"/>
+          {{#if currentUser}}
+            {{#if isSubcribbedToSameHourSession session._id}}
+              <div class="alert">
+                Vous avez déjà une session au même moment dans votre agenda.
+              </div>
+            {{else}}
+              {{#if isSubcribbed session._id}}
+                <button class="btn btn-danger unsubscribe">Retirer de votre agenda &nbsp;&nbsp; <i class="icon-remove"></i></button>
+              {{else}}
+                <button class="btn subscribe">Ajouter à votre agenda &nbsp;&nbsp; <i class="icon-ok"></i></button>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+
+          <h3>Description</h3>
+
+          <div id="description">
+            {{{session.description}}}
+          </div>
+
+          {{#if currentUser}}
+            <h3>Documents
+              {{#if isSessionSpeakerOrAdmin session._id}}
+                <input class="btn btn-primary" data-fp-button-text="Ajouter un document" title="Ajouter un fichier" type="filepicker" id="attachment"/>
+              {{/if}}
+            </h3>
+          {{/if}}
+
+          {{#if session.files}}
+            <div id="documents">
+              <ul>
+                {{#each session.files}}
+                <li>
+                  <a target="_blank" href="{{fpfile.url}}">{{fpfile.filename}}</a>
+                  {{#if isSessionSpeakerOrAdmin session._id }}<a class="btn remove-file" rel="{{fpfile.url}}" href="#"><i class="icon-remove"></i></a>{{/if}}
+                {{/each}}
+              </li>
+              </ul>
+            </div>
+          {{else}}
+            Aucun document disponible pour le moment
+          {{/if}}
+
+          {{#with session}}
+            {{> speaker}}
+          {{/with}}
+
+          <h3>Sondage</h3>
+          {{#with session}}
+            {{> survey}}
+          {{/with}}
+        </div>
+        <div class="span2"></div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>
+

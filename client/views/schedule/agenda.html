@@ -1,0 +1,157 @@
+<template name="agenda">
+  <div id="wrap">
+    {{> header}}
+    <div class="page agenda container-fluid">
+      <div class="row-fluid">
+        <div class="offset2 span8">
+          <h2 class="pull-left">Votre Agenda</h2>
+
+          {{#if currentUser}}
+            <button class="btn pull-left" id="help" data-toggle="tooltip" data-placement="top"
+                    data-original-title="À propos" data-content="Ajoutez des sessions à votre agenda dans la section programmation">
+              <i class="icon-question-sign"></i></button>
+          {{/if}}
+
+          <div class="clearfix"></div>
+
+          {{#if currentUser}}
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#agendaTab1" data-toggle="tab">En cours</a></li>
+              <li><a href="#agendaTab2" data-toggle="tab">À venir</a></li>
+              <li><a href="#agendaTab3" data-toggle="tab">Terminées</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="agendaTab1">
+                {{> agenda_current}}
+              </div>
+
+              <div class="tab-pane" id="agendaTab2">
+                {{> agenda_next}}
+              </div>
+
+              <div class="tab-pane" id="agendaTab3">
+                {{> agenda_previous}}
+              </div>
+            </div>
+
+          {{else}}
+            <p>Veuillez vous connecter pour profiter d'un agenda personnalisé.</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>
+
+<template name="agenda_current">
+
+  {{#if currentSession}}
+    {{#if currentSession.attendable}}
+      <div class="current-session">
+        <h4 class="agenda-subtitle">{{currentSession.name}}</h4>
+
+        <div class="well well-small liens">
+
+          <div>{{#getTime currentSession.date.start}}{{/getTime}}-{{#getTime currentSession.date.end}}{{/getTime}}</div>
+          <div><p>{{{currentSession.location}}}</p></div>
+
+          <h3 class="well-title">Description</h3>
+
+          {{{currentSession.description}}}
+
+          {{#with currentSession}}
+            {{> speaker}}
+          {{/with}}
+
+        </div>
+      </div>
+    {{else}}
+      <h4 class="agenda-subtitle">
+        {{currentSession.name}} de
+        {{#getTime currentSession.date.start}}{{/getTime}} à {{#getTime currentSession.date.end}}{{/getTime}}
+      </h4>
+    {{/if}}
+  {{else}}
+    <div class="well small-well">
+      Aucune activité courante. Ajoutez des activités à votre agenda à partir de la section <a href="/programmation">programmation</a>.
+    </div>
+  {{/if}}
+
+</template>
+
+<template name="agenda_next">
+  {{#if nextSession}}
+
+    <h4 class="agenda-subtitle">{{nextSession.name}}</h4>
+
+    <div class="well small-well">
+      <div class="row-fluid">
+        <div class="span5">
+          <h5 class="well-title first">Avant le début : </h5>
+
+          <div id="time-left">
+          </div>
+        </div>
+        {{#if nextSession.location}}
+          <div class="span3">
+            <h5 class="well-title">Endroit :</h5>
+
+            <p>{{{nextSession.location}}}</p>
+          </div>
+        {{/if}}
+
+        {{#if nextSession.attendable}}
+          <div class="span4 more-info">
+            <h5 class="well-title">
+              <a class="session-link" href="/programmation/session/{{nextSession._id}}">Plus d'information</a>
+            </h5>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if futureSessions}}
+    <h4 class="agenda-subtitle">Activités suivantes</h4>
+
+    <div class="row-fluid next-sessions">
+      <div class="span12">
+        <ul class="nav nav-tabs nav-stacked">
+          {{#each futureSessions}}
+
+            <li class="{{#if attendable}}enabled{{else}}disabled{{/if}}">
+              <a href="{{#if attendable}}/programmation/session/{{_id}}{{else}}#{{/if}}">
+                <span class="accordion-time">{{#getTime date.start}}{{/getTime}}-{{#getTime date.end}}{{/getTime}}</span> {{name}}
+              </a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  {{else}}
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="well">
+          Aucune activité suivante. Ajoutez des activités à votre agenda à partir de la section <a href="/programmation">programmation</a>.
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>
+
+<template name="agenda_previous">
+  {{#if previousSessions}}
+    <h4>Activités précédentes</h4>
+
+    <ul class="nav nav-tabs nav-stacked">
+      {{#each previousSessions}}
+        <li>
+          <a href="/programmation/session/{{_id}}">{{name}}</a>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>Les sessions auxquelles vous aurez assisté seront regroupées ici pour vous permettre de remplir les sondages rapidement.</p>
+  {{/if}}
+</template>

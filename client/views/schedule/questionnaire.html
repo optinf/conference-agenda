@@ -1,0 +1,56 @@
+<template name="questionnaire">
+  <div id="questionnaire">
+    <h3>Questionnaire en direct</h3>
+    {{! Form admin }}
+
+    {{#if isSessionSpeakerOrAdmin _id}}
+      <form id="admin">
+        <fieldset>
+          <input name="new-question" id="new-question" class="span8" type="text" placeholder="Question"/>
+          <input type="hidden" value="{{_id}}" id="session-id"/>
+
+          <div class="choices">
+            <div class="input-append">
+              <input name="new-choice" class="new-choice" type="text" placeholder="Choix de réponse"/>
+              <button class="btn add-choice" type="button">Ajouter un autre choix</button>
+            </div>
+          </div>
+        </fieldset>
+        <button id="add-questionnaire" class="btn btn-primary">Ajouter le questionnaire</button>
+      </form>
+    {{/if}}
+
+
+    {{! Form utilisateur}}
+
+    {{#each questionnaires _id}}
+
+      {{#if isSessionSpeakerOrAdmin ../_id}}
+        <div class="admin-buttons">
+          {{question}}
+          <input type="hidden" value="{{_id}}"/>
+          {{#if activated}}
+            <button class="activate-questionnaire btn btn-mini" type="button">Désactiver la question</button>
+          {{else}}
+            <button class="activate-questionnaire btn btn-mini" type="button">Activer la question</button>
+          {{/if}}
+          <button class="remove-questionnaire btn btn-mini" type="button">Supprimer la question</button>
+        </div>
+      {{else}}
+        {{#if activated}}
+          <form id="questionnaire-{{_id}}">
+            <blockquote>l
+              <p>{{question}}</p>
+            </blockquote>
+            <select>
+              {{#each choices}}
+                <option value="{{value}}" name="choice">{{label}}</option>
+              {{/each}}
+            </select>
+            <button id="send-{{_id}}" class="btn btn-primary send-questionnaire">Voter</button>
+          </form>
+        {{/if}}
+      {{/if}}
+    {{/each}}
+  </div>
+</template>

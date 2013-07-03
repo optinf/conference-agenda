@@ -1,0 +1,312 @@
+/* CSS declarations go here */
+@margin-bottom: 1em;
+@margin-top: 1em;
+@color-base: #333;
+@color-secondary: #666;
+
+@import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
+
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+//////padding
+.agenda h4, .nav-header, .well, .navbar-inner, .nav-tabs > li > a {
+  padding-left: 15px;
+}
+
+h3 {
+  margin-top: 1em;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+table td.text-center {
+  text-align: center;
+}
+
+.well-title {
+  margin-top: 0;
+}
+
+.accordion-toggle.disabled {
+  cursor: default;
+}
+
+.error {
+  color: #990000;
+}
+
+.header {
+  .sectionTitle img {
+    max-width: 350px;  /* IE8 need help adjusting responsive images */
+    width: 300px;
+  }
+
+  .login-button {
+    display: block;
+    float: right;
+    padding: 15px 0 0 15px;
+  }
+
+  .navbar {
+    margin-bottom: 0;
+
+    .navbar-inner {
+      padding-left: 0;
+
+      .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      background: none #f5f5f5;
+
+      .dropdown-menu > li > a:hover {
+        background-color: #f2f2f2;
+        background-image: none;
+        color: #333;
+      }
+
+      .btn-navbar {
+        margin-right: 0;
+      }
+
+      li.active a {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+.page {
+  overflow: auto;
+  padding-bottom: 160px;
+
+  .nav-header {
+    font-size: 1em;
+    color: @color-secondary;
+  }
+
+  &.agenda {
+    #time-left {
+      font-size: 1.5em;
+      line-height: 1.2em;
+
+      .countdown_section {
+        padding-right: 15px;
+        display: inline-block;
+      }
+    }
+
+    .nav-tabs {
+      margin-bottom: .5em;
+    }
+
+    .current-session h3{
+      font-size: 1.2em;
+    }
+
+    .speaker-name {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+
+    .accordion-toggle {
+      strong {
+        color: @color-base;
+        padding-right: 1em;
+      }
+    }
+
+    .accordion-time {
+      color: @color-base;
+      font-size: .85em;
+      padding-right: .5em;
+    }
+
+    #help {
+      margin: 1.2em 0 0 .5em;
+    }
+  }
+
+  &.schedule {
+    .icon-ok {
+      margin: 2px 0 5px 15px;
+    }
+  }
+
+  &.session {
+
+    h2 {
+      padding-right: 30px;
+    }
+
+    .alert {
+      margin-right: 30px;
+    }
+
+    .row-fluid .span8 {
+      position: relative;
+    }
+
+    #toolbox {
+      position: absolute;
+      right: 0;
+      top: 14px;
+    }
+
+    .unsubscribe i {
+      margin-top: 3px;
+    }
+
+    #documents {
+      ul {
+        margin-left: 0;
+
+        li {
+          margin-bottom: 0.8em;
+          list-style: none;
+
+          a {
+            vertical-align: baseline;
+          }
+        }
+      }
+
+    }
+  }
+
+  &.social {
+    .speaker {
+      margin-bottom: @margin-bottom / 2;
+      width: 100%;
+
+      .name {
+        float: left;
+        width: 50%;
+      }
+
+      .follow {
+        float: left;
+        width: 50%;
+      }
+    }
+
+    .twitter-timeline {
+      margin-bottom: @margin-bottom;
+    }
+
+  }
+
+  #questionnaire {
+
+    .input-append {
+      display: block;
+    }
+
+
+  }
+
+}
+
+.thumbnail {
+  border: 1px solid #fff;
+}
+
+.footer {
+  position: relative;
+  margin-top: -105px; /* negative value of footer height */
+  height: 95px;
+  clear: both;
+  padding-top: 10px;
+  border-top: 1px solid #e5e5e5;
+  background: #f5f5f5;
+  text-align: center;
+
+  .optinf-logo {
+    width: 160px;
+  }
+}
+
+.survey {
+  .answers {
+    margin-bottom: 1em;
+
+  }
+
+  form {
+    margin-bottom: 4em;
+  }
+
+  .date {
+    font-size: 0.8em;
+    line-height: 1.6em;
+    font-style: italic;
+    text-align: right;
+  }
+
+  textarea {
+    resize: none;
+    width: 75%;
+  }
+}
+
+.cke_editable {
+  min-height: 10px;
+}
+
+@media (max-width: 480px) {
+
+  .nav-tabs > li > a {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .header {
+    .sectionTitle img {
+      width: 100%;
+    }
+  }
+
+  #agendaTab2 .well-title {
+    margin-top: 2em;
+    margin-bottom: 0;
+  }
+
+  #agendaTab2 .well-title.first {
+    margin-top: 0;
+  }
+
+  .footer {
+    width: 110%;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+@media (max-width: 940px) {
+  .header {
+    .navbar .navbar-inner {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
+
+@media (min-width: 940px) {
+  .header .nav {
+    font-size: 15px;
+  }
+}

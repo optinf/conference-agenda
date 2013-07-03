@@ -1,0 +1,179 @@
+<template name="admin_inscriptions">
+  {{#if currentUser.admin}}
+    <div id="wrap">
+      {{> header}}
+      <div class="page administration container-fluid">
+        <div class="row-fluid">
+          <div class="offset2 span8">
+            <h2>Administration</h2>
+
+            <h3>Nombre d'inscriptions</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th class="text-right">Inscrits</th>
+                </tr>
+              </thead>
+              {{#each sessions}}
+                <tr>
+                  <td><a class="session-link" href="/programmation/session/{{_id}}">{{name}}</a></td>
+                  <td class="text-center">{{arraySize subscriptions}}</td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{> footer}}
+  {{/if}}
+</template>
+
+
+<template name="admin_users">
+  {{#if currentUser.admin}}
+    <div id="wrap">
+      {{> header}}
+      <div class="page administration container-fluid">
+        <div class="row-fluid">
+          <div class="offset2 span8">
+            <h2>Administration</h2>
+
+            <h3>Utilisateurs inscrits : {{arraySize users}}</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Inscrit le</th>
+                  <th>Courriel</th>
+                </tr>
+              </thead>
+              {{#each users}}
+                <tr>
+                  <td>{{formatDate createdAt}}</td>
+                  <td>{{#each emails}}{{address}}{{/each}}</td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{> footer}}
+  {{/if}}
+</template>
+
+
+<template name="admin_speakers">
+  {{#if currentUser.admin}}
+    <div id="wrap">
+      {{> header}}
+      <div class="page administration container-fluid">
+        <div class="row-fluid">
+          <div class="offset2 span8">
+
+            <h2>Administration</h2>
+
+            <h3>Gestion de compte des conférenciers</h3>
+            <div id="error-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Erreur</h3>
+              </div>
+              <div class="modal-body">
+                <p>Le courriel n'a pas été acheminé parce qu'il est déjà utilisé où qu'il n'est pas valide.</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div>
+
+            <div id="success-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Succès</h3>
+              </div>
+              <div class="modal-body">
+                <p>Le courriel a été envoyé</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Courriel</th>
+                  <th class="text-right"></th>
+                </tr>
+              </thead>
+              {{#each speakers}}
+                <tr>
+                  <td>{{firstName}} {{lastName}}{{#if emails}} <span class="label label-success">Déjà envoyé</span>{{/if}}</td>
+                  <td>
+                    <input type="hidden" class="speaker-id" value="{{_id}}"/>
+                    <input type="text" class="speaker-email"/>
+                  </td>
+                  <td>
+                    <button class="send-enrollment-email" class="btn">Envoyer</button>
+                  </td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{> footer}}
+  {{/if}}
+</template>
+
+<template name="admin_surveys">
+  {{#if currentUser.admin}}
+    <div id="wrap">
+      {{> header}}
+      <div class="page administration container-fluid">
+        <div class="row-fluid">
+          <div class="offset2 span8">
+            <h2>Administration</h2>
+
+            <h3>Sondages</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Recommanderiez-vous à un collègue d’assister à cette présentation ?</th>
+                  <th>Si le conférencier donnait une autre conférence dans la journée est-ce que vous seriez tenté d’y assister ?</th>
+                  <th>Est-ce un sujet qui devrait être traité de nouveau à l’INTRACOM 2014 ?</th>
+                  <th>Commentaire</th>
+                  <th>Courriel</th>
+                </tr>
+
+              </thead>
+              {{#each sessions}}
+                {{#if surveys}}
+                  <tr class="info">
+                    <td colspan="5"><strong>{{name}}</strong></td>
+                  </tr>
+                {{/if}}
+
+                {{#each surveys}}
+                  <tr>
+                    {{#each answers}}
+                      <td>{{answer}}</td>
+                    {{/each}}
+
+                    <td>{{comment}}</td>
+                    <td>{{surveyUserEmail user_id}}</td>
+                  </tr>
+                {{/each}}
+              {{/each}}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{> footer}}
+  {{/if}}
+</template>

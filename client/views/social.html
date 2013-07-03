@@ -1,0 +1,53 @@
+<template name="social">
+  {{> header}}
+  <div class="page social container-fluid">
+    <div class="row-fluid">
+      <div class="offset2 span8">
+
+        <h2>Buzz Event</h2>
+        <ul class="nav nav-tabs hidden-phone">
+          <li class="active"><a href="#socialTab1" data-toggle="tab">Conférenciers</a></li>
+          <li><a href="#socialTab2" data-toggle="tab">#Event</a></li>
+          <li><a href="#socialTab3" data-toggle="tab">@Event2013</a></li>
+        </ul>
+
+        <ul class="nav nav-tabs nav-stacked hidden-tablet	hidden-desktop">
+          <li class="active"><a href="#socialTab1" data-toggle="tab">Conférenciers</a></li>
+          <li><a href="#socialTab2" data-toggle="tab">#Event</a></li>
+          <li><a href="#socialTab3" data-toggle="tab">@Event2013</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="socialTab1">
+            <div class="well">
+              {{#each findSpeakerWithTwitter}}
+                <div class="speaker">
+                  <div class="name">
+                    {{firstName}} {{lastName}}
+                  </div>
+                  <div class="twitter follow">
+                    <a href="https://twitter.com/{{twitter}}" class="twitter-follow-button" data-show-screen-name="true" data-show-count="false"
+                       data-lang="fr"></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              {{/each}}
+            </div>
+          </div>
+
+          <div class="tab-pane" id="socialTab2">
+            <a class="twitter-timeline" href="linkToTimeline" data-widget-id="309337623804125185">Tweets concernant #Hashtag</a>
+          </div>
+
+          <div class="tab-pane" id="socialTab3">
+            <a class="twitter-timeline" href="linkToTimeline" data-widget-id="301442760030945280" data-lang="fr">Tweets de @meteor</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>
+
+
+

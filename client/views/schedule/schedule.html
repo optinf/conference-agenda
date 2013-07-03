@@ -1,0 +1,35 @@
+<template name="schedule">
+  <div id="wrap">
+    {{> header}}
+    <div class="page schedule container-fluid">
+      <div class="row-fluid">
+        <div class="offset2 span8">
+          <h2>Programmation</h2>
+          <ul class="nav nav-tabs nav-stacked">
+            {{#each sessions}}
+              <li id="{{#getTime date.start}}{{/getTime}}-{{#getTime date.end}}{{/getTime}}" class="nav-header">{{#getTime date.start}}{{/getTime}}-{{#getTime date.end}}{{/getTime}}</li>
+              {{#if attendable}}
+                <li class="enabled"><a href="/programmation/session/{{_id}}"> {{#if currentUser}} {{#if isSubcribbed _id}}<i class="pull-right icon-ok"></i>{{/if}}{{/if}} {{name}}</a></li>
+              {{else}}
+                <li class="disabled"><a href="#">{{name}}</a></li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>
+
+<template name="schedule_left_menu">
+  <div class="hidden-phone">
+    <h2></h2>
+    <ul class="nav nav-list">
+      <li><a href="/agenda">Agenda personnel</a></li>
+      <li>
+        <a rel="schedule session" href="/programmation">Programme complet</a>
+      </li>
+    </ul>
+  </div>
+</template>

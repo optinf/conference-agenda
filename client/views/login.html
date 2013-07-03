@@ -1,0 +1,74 @@
+<template name="login">
+  <div id="wrap">
+    {{> header}}
+    <div class="page login container-fluid">
+      <div class="row-fluid">
+        <div class="offset2 span8">
+          <h2></h2>
+          <form id="login" class="form-horizontal">
+            <div class="control-group">
+              <div class="controls">
+                <h2>Connecter</h2>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="inputEmail">Courriel</label>
+
+              <div class="controls">
+                <input name="inputEmail" type="text" id="inputEmail">
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="inputPassword">Mot de passe</label>
+
+              <div class="controls">
+                <input name="inputPassword" type="password" id="inputPassword">
+              </div>
+            </div>
+
+            <div class="control-group submit">
+              <div class="controls">
+                <button id="submit" type="submit" class="btn">Connecter</button>
+                &nbsp; ou &nbsp;
+                <button id="create" type="submit" class="btn">Créer</button>
+              </div>
+              <div class="controls">
+                <br/>
+                <a href="/mot-de-passe-oublie">Mot de passe oublié?</a>
+              </div>
+            </div>
+          </form>
+          <p>
+            <small class="muted ">Les données fournies en s'inscrivant au service d'«Agenda personnel»
+              de l'Intracom 2013 ne seront utilisées que par le Réseau conformément aux
+              <a target="_blank" href="http://actionti.com/termes-et-conditions">termes et conditions</a> de la politique de confidentialité du Réseau.</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>
+
+<template name="forgot_password">
+  <div id="wrap">
+    {{> header}}
+    <div class="page forgot-password container-fluid">
+      <div class="row-fluid">
+        <div class="offset2 span8">
+          <h2></h2>
+          <form id="forgot-password" class="form-horizontal">
+
+            <h2>Réinitialiser</h2>
+            <p>Un lien sera envoyé à votre boîte de courriel pour vous permettre de réinitialiser votre mot de passe.</p>
+            <input placeholder="Courriel" name="inputEmail" type="text" id="forgot-password-email"/>
+            <button class="submit" id="submit" type="submit" class="btn">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{> footer}}
+</template>

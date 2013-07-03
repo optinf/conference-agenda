@@ -1,0 +1,8 @@
+<template name="speaker">
+  {{#with speaker _id}}
+    <div id="speaker">
+      {{{bio}}}
+    </div>
+  {{/with}}
+  <div class="session-id" data-session-id="{{_id}}"></div>
+</template>

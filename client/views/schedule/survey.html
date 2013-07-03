@@ -1,0 +1,91 @@
+<template name="survey">
+  <div class="survey">
+    {{#if currentUser}}
+      {{#if notAlreadySentSurvey _id}}
+        {{#if isSessionSpeakerOrAdmin _id}}
+        {{else}}
+          {{#constant}}
+
+            {{! //TODO Change your questions here}}
+            <form>
+              <fieldset>
+                <legend>Appréciation de l'activité</legend>
+                <p class="question">Recommanderiez-vous à un collègue d’assister à cette présentation ?</p>
+
+                <div class="answers" id="optionsQuestion1">
+                  <select name="optionsQuestion1">
+                    <option></option>
+                    <option value="Oui">Oui</option>
+                    <option value="Probable">Probable</option>
+                    <option value="Peu Probable">Peu Probable</option>
+                    <option value="Non">Non</option>
+                  </select>
+                  <label for="optionsQuestion1" class="error text-error" style="display:none;"></label>
+                </div>
+
+                <p class="question">Si le conférencier donnait une autre conférence dans la journée est-ce que vous seriez tenté d’y assister ?</p>
+
+                <div class="answers" id="optionsQuestion2">
+                  <select name="optionsQuestion2">
+                    <option></option>
+                    <option value="Oui">Oui</option>
+                    <option value="Probable">Probable</option>
+                    <option value="Peu Probable">Peu Probable</option>
+                    <option value="Non">Non</option>
+                  </select>
+                  <label for="optionsQuestion2" class="error text-error" style="display:none;"></label>
+                </div>
+
+                <p class="question">Est-ce un sujet qui devrait être traité de nouveau à l’INTRACOM 2014 ?</p>
+
+                <div class="answers" id="optionsQuestion3">
+                  <select name="optionsQuestion3">
+                    <option></option>
+                    <option value="Oui">Oui</option>
+                    <option value="Probable">Probable</option>
+                    <option value="Peu Probable">Peu Probable</option>
+                    <option value="Non">Non</option>
+                  </select>
+                  <label for="optionsQuestion3" class="error text-error" style="display:none;"></label>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Commentaire(s)</legend>
+                <textarea rows="5"></textarea><br/>
+                <button class="btn btn-primary submit">Envoyer</button>
+              </fieldset>
+            </form>
+          {{/constant}}
+        {{/if}}
+      {{else}}
+        <div id="survey-success" class="alert alert-success">
+          Merci pour votre commentaire.
+        </div>
+      {{/if}}
+
+      {{#if isSessionSpeakerOrAdmin _id}}
+        {{#if surveys}}<h4>Résultats</h4>{{else}}Il n'y a pas encore eu de soumission.{{/if}}
+
+        {{#each surveys}}
+          <div>
+            <div class="email pull-left">Le sondage de {{surveyUserEmail user_id}}</div>
+            <div class="date pull-right">{{#formateDate postDate}}{{/formateDate}}</div>
+            <div class="clearfix"></div>
+            <div class="comment well">
+              <ul>
+                {{#each answers}}
+                  <li>{{question}} : <b>{{answer}}</b></li>
+                {{/each}}
+              </ul>
+
+              Commentaire : <br/>
+              {{comment}}
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+    {{else}}
+      Connectez-vous pour remplir le formulaire.
+    {{/if}}
+  </div>
+</template>
