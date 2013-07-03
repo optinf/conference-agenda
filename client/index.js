@@ -10,7 +10,7 @@ Template.header.isNotLoginPage = function () {
   return Meteor.Router.page() !== 'login';
 };
 
-//TODO Add you filepicker key here.
+//INFO-REQUIRED Add you filepicker key here.
 Meteor.startup(function () {
   filepicker.setKey("keyOfFilePicker");
 });

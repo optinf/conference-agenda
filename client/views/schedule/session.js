@@ -10,7 +10,7 @@ Template.session.rendered = function () {
     filepicker.constructWidget(document.getElementById('attachment'));
   }
 
-  //TODO Add the default text that appear when you share via Twitter.
+  //INFO-REQUIRED Add the default text that appear when you share via Twitter.
   addthis_share = {
     passthrough: {
       twitter: {

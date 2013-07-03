@@ -6,10 +6,9 @@ Installation
 -------------------
 - Install Meteorite
   - npm install -g meteorite
-  - More info here : https://github.com/oortcloud/meteorite
 - Clone the project
 - Customize your information in the server/startup.js file
-- Search for //TODO and add the information required.
+- Search for //INFO-REQUIRED and add the information.
 - Change your favicon
 - Download CKEditor and put it under public/ckeditor
 - Go to the project root and type mrt
@@ -27,7 +26,6 @@ Tested with
 
 TODO
 -------------------
-- Better filepicker.io implementation. The current one is not secure.
 - Better admin check on the frontend. Permissions are defined at the collection level.
 - Inline ckeditor only works for Chrome
 - Back button on the programmation page always send you a the top of the page.
