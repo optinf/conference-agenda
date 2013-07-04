@@ -6,12 +6,14 @@ Installation
 -------------------
 - Install Meteorite
   - npm install -g meteorite
-- Clone the project
+- Clone this project
 - Customize your information in the server/startup.js file
-- Search for //INFO-REQUIRED and add the information.
+- Search for //INFO-REQUIRED inside the project and add the information needed.
 - Change your favicon
 - Download CKEditor and put it under public/ckeditor
-- Go to the project root and type mrt
+- Go to the project root and type
+  - mrt install : Install all dependencies.
+  - meteor : Install and launch the instance.
 
 That's it!
 
