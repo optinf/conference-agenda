@@ -1,3 +1,11 @@
+/**
+ * !! Important
+ * Everything here needs to be customized.
+ * The information already entered only serves as an example.
+ *
+ */
+
+
 Meteor.startup(function () {
 
   /**
@@ -42,7 +50,7 @@ Meteor.startup(function () {
 
 
     /**
-     * This account can do everything.
+     * This account can do everything. Don't leave this unmodified. Don't leave the password as plain text.
      */
     Accounts.createUser({username: 'admin', email: "test@test.com", password: 'admin'});
     Meteor.users.update({'username': 'admin'}, {$set: { admin: true}});
