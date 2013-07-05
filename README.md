@@ -4,14 +4,14 @@ Optimum Conference Agenda
 
 Installation
 -------------------
-- Install Meteorite
+- Install Meteorite:
   - npm install -g meteorite
-- Clone this project
-- Customize your information in the server/startup.js file
+- Clone this project.
+- Customize all the information in the server/startup.js file.
 - Search for //INFO-REQUIRED inside the project and add the information needed.
-- Change your favicon
-- Download CKEditor and put it under public/ckeditor
-- Go to the project root and type
+- Change your favicon.
+- Download CKEditor and put it under public/ckeditor.
+- Go to the project root and type:
   - mrt install : Install all dependencies.
   - meteor : Install and launch the instance.
 
@@ -29,6 +29,6 @@ Tested with
 TODO
 -------------------
 - Better admin check on the frontend. Permissions are defined at the collection level.
-- Inline ckeditor only works for Chrome
-- Back button on the programmation page always send you a the top of the page.
+- Inline CKEditor only works for Chrome.
+- Back button on the programmation page always sends you a the top of the page.
 - Internationalization
